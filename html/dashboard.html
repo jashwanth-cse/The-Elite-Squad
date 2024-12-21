@@ -80,6 +80,7 @@
                 <p><strong>Complaint Type:</strong> ${complaint.complaintType}</p>
                 <p><strong>Description:</strong> ${complaint.description}</p>
                 <p><strong>Date:</strong> ${complaint.date}</p>
+                <p><strong>Address:</strong> ${complaint.address} <button onclick="navigateToLocation('${complaint.address}')">Navigate</button></p>
                 <button onclick="takeComplaint('${complaint.id}')">Take Complaint</button>
             `;
             complaintsContainer.appendChild(complaintDiv);
@@ -88,6 +89,11 @@
         function takeComplaint(complaintId) {
             alert(`Complaint ${complaintId} taken by ${loggedInTechnician.username}`);
             // Additional logic to mark the complaint as taken can be added here
+        }
+
+        function navigateToLocation(address) {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
