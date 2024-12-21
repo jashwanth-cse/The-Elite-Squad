@@ -65,7 +65,7 @@
             text-align: center;
         }
 
-        #setTopBoxContainer, #acBrandContainer, #fridgeBrandContainer {
+        #setTopBoxContainer, #acBrandContainer, #fridgeBrandContainer, #warrantyStatusContainer {
             display: none;
         }
     </style>
@@ -136,6 +136,15 @@
                 </select>
             </div>
 
+            <div id="warrantyStatusContainer">
+                <label for="warrantyStatus">Warranty Status:</label>
+                <select id="warrantyStatus" name="warrantyStatus">
+                    <option value="" disabled selected>Select One</option>
+                    <option value="InWarranty">In Warranty</option>
+                    <option value="OutOfWarranty">Out of Warranty</option>
+                </select>
+            </div>
+
             <button type="submit">Submit Complaint</button>
         </form>
         <div id="successMessage"></div>
@@ -147,13 +156,18 @@
             document.getElementById('setTopBoxContainer').style.display = 'none';
             document.getElementById('acBrandContainer').style.display = 'none';
             document.getElementById('fridgeBrandContainer').style.display = 'none';
+            document.getElementById('warrantyStatusContainer').style.display = 'none';
 
             if (complaintType === 'TV') {
                 document.getElementById('setTopBoxContainer').style.display = 'block';
             } else if (complaintType === 'AC') {
                 document.getElementById('acBrandContainer').style.display = 'block';
+                document.getElementById('warrantyStatusContainer').style.display = 'block';
             } else if (complaintType === 'Fridge') {
                 document.getElementById('fridgeBrandContainer').style.display = 'block';
+                document.getElementById('warrantyStatusContainer').style.display = 'block';
+            } else if (complaintType === 'WaterHeater') {
+                document.getElementById('warrantyStatusContainer').style.display = 'block';
             }
         });
 
@@ -168,6 +182,7 @@
             const setTopBox = document.getElementById('setTopBox').value;
             const acBrand = document.getElementById('acBrand').value;
             const fridgeBrand = document.getElementById('fridgeBrand').value;
+            const warrantyStatus = document.getElementById('warrantyStatus').value;
 
             const complaintData = {
                 name,
@@ -178,6 +193,7 @@
                 setTopBox: complaintType === 'TV' ? setTopBox : null,
                 acBrand: complaintType === 'AC' ? acBrand : null,
                 fridgeBrand: complaintType === 'Fridge' ? fridgeBrand : null,
+                warrantyStatus: (complaintType === 'AC' || complaintType === 'Fridge' || complaintType === 'WaterHeater') ? warrantyStatus : null,
                 date: new Date().toLocaleString(),
             };
 
@@ -187,7 +203,13 @@
             complaints.push(complaintData);
             localStorage.setItem('complaints', JSON.stringify(complaints));
 
-            document.getElementById('successMessage').textContent = `Thank you, ${name}. Your complaint has been registered with Complaint ID: ${complaintId}. You can check your complaint status using this ID.`;
+            let successMessage = `Thank you, ${name}. Your complaint has been registered with Complaint ID: ${complaintId}.`;
+            if (warrantyStatus === 'InWarranty') {
+                successMessage += ' Free service will be provided.';
+            } else if (warrantyStatus === 'OutOfWarranty') {
+                successMessage += ' Service charge is applicable.';
+            }
+            document.getElementById('successMessage').textContent = successMessage;
             document.getElementById('complaintForm').reset();
         });
     </script>
