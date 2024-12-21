@@ -82,7 +82,7 @@
             const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
 
             // Find the complaint with the given ID
-            const complaintData = complaints.find(complaint => 'complaint-' + new Date(complaint.date).getTime() === complaintId);
+            const complaintData = complaints.find(complaint => complaint.id === complaintId);
 
             // Display the complaint details if found
             if (complaintData) {
