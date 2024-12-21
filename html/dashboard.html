@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technician Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .complaint {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .complaint:last-child {
+            border-bottom: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pending Complaints</h1>
+        <div id="complaintsContainer"></div>
+    </div>
+
+    <script>
+        const loggedInTechnician = JSON.parse(localStorage.getItem('loggedInTechnician'));
+        const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
+
+        const jobComplaintTypes = {
+            Electrician: ['Fuse', 'UPS'],
+            Plumber: ['Water', 'WaterPump'],
+            CableOperator: ['TV'],
+            ElectronicTechnician: ['AC', 'Fridge', 'WaterHeater']
+        };
+
+        const relevantComplaints = complaints.filter(complaint => jobComplaintTypes[loggedInTechnician.job].includes(complaint.complaintType));
+
+        const complaintsContainer = document.getElementById('complaintsContainer');
+        relevantComplaints.forEach(complaint => {
+            const complaintDiv = document.createElement('div');
+            complaintDiv.className = 'complaint';
+            complaintDiv.innerHTML = `
+                <p><strong>Name:</strong> ${complaint.name}</p>
+                <p><strong>Email:</strong> ${complaint.email}</p>
+                <p><strong>Mobile:</strong> ${complaint.mobile}</p>
+                <p><strong>Complaint Type:</strong> ${complaint.complaintType}</p>
+                <p><strong>Description:</strong> ${complaint.description}</p>
+                <p><strong>Date:</strong> ${complaint.date}</p>
+                <button onclick="takeComplaint('${complaint.id}')">Take Complaint</button>
+            `;
+            complaintsContainer.appendChild(complaintDiv);
+        });
+
+        function takeComplaint(complaintId) {
+            alert(`Complaint ${complaintId} taken by ${loggedInTechnician.username}`);
+            // Additional logic to mark the complaint as taken can be added here
+        }
+    </script>
+</body>
+</html>

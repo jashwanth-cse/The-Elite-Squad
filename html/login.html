@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technician Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        input, select, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Technician Login</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your username">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div id="message"></div>
+
+        <h1>Create Account</h1>
+        <form id="createAccountForm">
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required placeholder="Create a username">
+
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required placeholder="Create a password">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="qualification">Qualification:</label>
+            <input type="text" id="qualification" name="qualification" required placeholder="Enter your qualification">
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
+
+            <label for="job">Job:</label>
+            <select id="job" name="job" required>
+                <option value="" disabled selected>Select One</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="CableOperator">Cable Operator</option>
+                <option value="ElectronicTechnician">Electronic Technician</option>
+            </select>
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <div id="accountMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const dob = document.getElementById('dob').value;
+            const qualification = document.getElementById('qualification').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const job = document.getElementById('job').value;
+
+            const technicianData = {
+                username: newUsername,
+                password: newPassword,
+                dob,
+                qualification,
+                email,
+                mobile,
+                job
+            };
+
+            const technicians = JSON.parse(localStorage.getItem('technicians')) || [];
+            technicians.push(technicianData);
+            localStorage.setItem('technicians', JSON.stringify(technicians));
+
+            document.getElementById('accountMessage').textContent = 'Account created successfully. You can now login.';
+            document.getElementById('createAccountForm').reset();
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const technicians = JSON.parse(localStorage.getItem('technicians')) || [];
+            const technician = technicians.find(tech => tech.username === username && tech.password === password);
+
+            if (technician) {
+                localStorage.setItem('loggedInTechnician', JSON.stringify(technician));
+                window.location.href = 'dashboard.html';
+            } else {
+                document.getElementById('message').textContent = 'Invalid username or password. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
