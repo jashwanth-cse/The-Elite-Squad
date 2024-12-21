@@ -205,9 +205,9 @@
 
             let successMessage = `Thank you, ${name}. Your complaint has been registered with Complaint ID: ${complaintId}.`;
             if (warrantyStatus === 'InWarranty') {
-                successMessage += ' Free service will be provided.';
+                successMessage += ' Free service will be provided as the product is under warranty.';
             } else if (warrantyStatus === 'OutOfWarranty') {
-                successMessage += ' Service charge is applicable.';
+                successMessage += ' Service charge is applicable as the product is out of warranty.';
             }
             document.getElementById('successMessage').textContent = successMessage;
             document.getElementById('complaintForm').reset();
