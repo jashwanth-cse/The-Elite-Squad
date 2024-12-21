@@ -78,19 +78,22 @@
 
             const complaintId = document.getElementById('complaintId').value;
 
-            // Retrieve the complaint data from local storage
-            const complaintData = localStorage.getItem(complaintId);
+            // Retrieve the complaints data from local storage
+            const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
+
+            // Find the complaint with the given ID
+            const complaintData = complaints.find(complaint => 'complaint-' + new Date(complaint.date).getTime() === complaintId);
 
             // Display the complaint details if found
             if (complaintData) {
-                const data = JSON.parse(complaintData);
                 document.getElementById('complaintDetails').innerHTML = `
                     <h2>Complaint Details</h2>
-                    <p><strong>Name:</strong> ${data.name}</p>
-                    <p><strong>Email:</strong> ${data.email}</p>
-                    <p><strong>Mobile:</strong> ${data.mobile}</p>
-                    <p><strong>Complaint Type:</strong> ${data.complaintType}</p>
-                    <p><strong>Description:</strong> ${data.description}</p>
+                    <p><strong>Name:</strong> ${complaintData.name}</p>
+                    <p><strong>Email:</strong> ${complaintData.email}</p>
+                    <p><strong>Mobile:</strong> ${complaintData.mobile}</p>
+                    <p><strong>Complaint Type:</strong> ${complaintData.complaintType}</p>
+                    <p><strong>Description:</strong> ${complaintData.description}</p>
+                    <p><strong>Date:</strong> ${complaintData.date}</p>
                 `;
             } else {
                 document.getElementById('complaintDetails').textContent = "Complaint not found. Please check the ID and try again.";
