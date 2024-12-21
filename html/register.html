@@ -68,6 +68,10 @@
         #setTopBoxContainer, #acBrandContainer, #fridgeBrandContainer, #warrantyStatusContainer {
             display: none;
         }
+
+        #addressContainer {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -145,6 +149,12 @@
                 </select>
             </div>
 
+            <div id="addressContainer">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required placeholder="Enter your address">
+                <button type="button" id="useCurrentLocation">Use My Current Location</button>
+            </div>
+
             <button type="submit">Submit Complaint</button>
         </form>
         <div id="successMessage"></div>
@@ -171,6 +181,33 @@
             }
         });
 
+        document.getElementById('useCurrentLocation').addEventListener('click', function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    const geocoder = new google.maps.Geocoder();
+                    const latlng = { lat: lat, lng: lon };
+
+                    geocoder.geocode({ location: latlng }, function (results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                                document.getElementById('address').value = results[0].formatted_address;
+                            } else {
+                                alert('No results found');
+                            }
+                        } else {
+                            alert('Geocoder failed due to: ' + status);
+                        }
+                    });
+                }, function () {
+                    alert('Geolocation failed or is not supported by your browser.');
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        });
+
         document.getElementById('complaintForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -183,6 +220,7 @@
             const acBrand = document.getElementById('acBrand').value;
             const fridgeBrand = document.getElementById('fridgeBrand').value;
             const warrantyStatus = document.getElementById('warrantyStatus').value;
+            const address = document.getElementById('address').value;
 
             const complaintData = {
                 name,
@@ -194,6 +232,7 @@
                 acBrand: complaintType === 'AC' ? acBrand : null,
                 fridgeBrand: complaintType === 'Fridge' ? fridgeBrand : null,
                 warrantyStatus: (complaintType === 'AC' || complaintType === 'Fridge' || complaintType === 'WaterHeater') ? warrantyStatus : null,
+                address,
                 date: new Date().toLocaleString(),
             };
 
@@ -213,5 +252,6 @@
             document.getElementById('complaintForm').reset();
         });
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 </body>
 </html>
