@@ -216,6 +216,10 @@
                 const place = autocomplete.getPlace();
                 if (place.formatted_address) {
                     addressInput.value = place.formatted_address;
+                } else {
+                    const addressComponents = place.address_components;
+                    const formattedAddress = addressComponents.map(component => component.long_name).join(', ');
+                    addressInput.value = formattedAddress;
                 }
             });
         }
