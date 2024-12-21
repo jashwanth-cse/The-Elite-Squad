@@ -168,7 +168,6 @@
             const setTopBox = document.getElementById('setTopBox').value;
             const acBrand = document.getElementById('acBrand').value;
             const fridgeBrand = document.getElementById('fridgeBrand').value;
-            const complaintId = 'complaint-' + new Date().getTime();
 
             const complaintData = {
                 name,
@@ -186,7 +185,7 @@
             complaints.push(complaintData);
             localStorage.setItem('complaints', JSON.stringify(complaints));
 
-            document.getElementById('successMessage').textContent = Thank you, ${name}. Your complaint has been registered with Complaint ID: ${complaintId}. You can check your complaint status using this ID.;
+            document.getElementById('successMessage').textContent = `Thank you, ${name}. Your complaint has been registered successfully.`;
             document.getElementById('complaintForm').reset();
         });
     </script>
