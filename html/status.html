@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Solve It - Check Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        input, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #complaintDetails {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Check Complaint Status</h1>
+        <form id="checkStatusForm">
+            <label for="complaintId">Enter Complaint ID:</label>
+            <input type="text" id="complaintId" name="complaintId" required placeholder="Enter your complaint ID">
+
+            <button type="submit">Check Status</button>
+        </form>
+
+        <div id="complaintDetails"></div>
+    </div>
+
+    <script>
+        document.getElementById('checkStatusForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const complaintId = document.getElementById('complaintId').value;
+
+            // Retrieve the complaint data from local storage
+            const complaintData = localStorage.getItem(complaintId);
+
+            // Display the complaint details if found
+            if (complaintData) {
+                const data = JSON.parse(complaintData);
+                document.getElementById('complaintDetails').innerHTML = `
+                    <h2>Complaint Details</h2>
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Mobile:</strong> ${data.mobile}</p>
+                    <p><strong>Complaint Type:</strong> ${data.complaintType}</p>
+                    <p><strong>Description:</strong> ${data.description}</p>
+                `;
+            } else {
+                document.getElementById('complaintDetails').textContent = "Complaint not found. Please check the ID and try again.";
+            }
+        });
+    </script>
+</body>
+</html>
