@@ -25,7 +25,7 @@
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #007BFF;
             animation: fadeIn 2s ease-in-out;
         }
 
@@ -37,6 +37,7 @@
         label {
             margin-bottom: 8px;
             font-size: 1.1rem;
+            color: #007BFF;
         }
 
         input, button {
@@ -45,21 +46,22 @@
             font-size: 1rem;
             border-radius: 4px;
             border: 1px solid #ccc;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         input:focus {
             border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #007BFF;
             color: white;
             transition: background 0.3s ease, transform 0.3s ease;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
             transform: scale(1.05);
         }
 
