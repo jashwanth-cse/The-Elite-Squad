@@ -13,11 +13,12 @@
         }
 
         body {
-            background: #f4f4f9;
+            background: linear-gradient(to right, #f4f4f9, #e0eafc);
             color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeIn 1s ease-in-out;
         }
 
         header {
@@ -26,10 +27,11 @@
             background: #007BFF;
             color: #fff;
             text-align: center;
+            animation: slideInDown 1s ease-in-out;
         }
 
         header h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
         nav {
@@ -38,6 +40,7 @@
             display: flex;
             justify-content: center;
             padding: 0.5rem 0;
+            animation: slideInUp 1s ease-in-out;
         }
 
         nav a {
@@ -46,20 +49,22 @@
             margin: 0 1rem;
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
         nav a:hover {
             background: #003d7a;
+            transform: scale(1.1);
         }
 
         .hero {
             text-align: center;
             margin: 2rem 0;
+            animation: fadeIn 2s ease-in-out;
         }
 
         .hero h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #007BFF;
         }
 
@@ -75,11 +80,12 @@
             padding: 0.75rem 1.5rem;
             border-radius: 5px;
             font-size: 1rem;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
         .btn-primary:hover {
             background: #0056b3;
+            transform: scale(1.1);
         }
 
         .features {
@@ -90,6 +96,7 @@
             padding: 2rem;
             background: #fff;
             width: 100%;
+            animation: fadeIn 2s ease-in-out;
         }
 
         .feature-card {
@@ -100,6 +107,11 @@
             text-align: center;
             flex: 1;
             max-width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
         }
 
         .feature-card h3 {
@@ -119,10 +131,38 @@
             color: #fff;
             text-align: center;
             width: 100%;
+            animation: slideInUp 1s ease-in-out;
         }
 
         footer p {
             font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
