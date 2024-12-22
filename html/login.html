@@ -40,7 +40,7 @@
             color: #007BFF;
         }
 
-        input, select, button {
+        input, button {
             margin-bottom: 15px;
             padding: 10px;
             font-size: 1rem;
@@ -49,7 +49,7 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        input:focus, select:focus {
+        input:focus {
             border-color: #007BFF;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
@@ -74,6 +74,22 @@
 
         .hidden {
             display: none;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .signup-link a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            color: #0056b3;
         }
 
         @keyframes fadeIn {
@@ -110,85 +126,12 @@
 
         <div id="message"></div>
 
-        <h1>Create Account</h1>
-        <form id="createAccountForm">
-            <label for="newUsername">Username:</label>
-            <input type="text" id="newUsername" name="newUsername" required placeholder="Create a username">
-
-            <label for="newPassword">Password:</label>
-            <input type="password" id="newPassword" name="newPassword" required placeholder="Create a password">
-
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
-
-            <label for="qualification">Qualification:</label>
-            <input type="text" id="qualification" name="qualification" required placeholder="Enter your qualification">
-
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email address">
-
-            <label for="mobile">Mobile Number:</label>
-            <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
-
-            <label for="job">Job:</label>
-            <select id="job" name="job" required>
-                <option value="" disabled selected>Select One</option>
-                <option value="Electrician">Electrician</option>
-                <option value="Plumber">Plumber</option>
-                <option value="CableOperator">Cable Operator</option>
-                <option value="ElectronicTechnician">Electronic Technician</option>
-            </select>
-
-            <button type="submit">Create Account</button>
-        </form>
-
-        <div id="accountMessage"></div>
+        <div class="signup-link">
+            <p>New user? <a href="signup.html">Sign Up</a></p>
+        </div>
     </div>
 
     <script>
-        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const newUsername = document.getElementById('newUsername').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const dob = document.getElementById('dob').value;
-            const qualification = document.getElementById('qualification').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-            const job = document.getElementById('job').value;
-
-            const birthDate = new Date(dob);
-            const today = new Date();
-            const age = today.getFullYear() - birthDate.getFullYear();
-            const monthDifference = today.getMonth() - birthDate.getMonth();
-
-            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-
-            if (age < 18) {
-                document.getElementById('accountMessage').textContent = 'You must be 18 years or older to register.';
-                return;
-            }
-
-            const technicianData = {
-                username: newUsername,
-                password: newPassword,
-                dob,
-                qualification,
-                email,
-                mobile,
-                job
-            };
-
-            const technicians = JSON.parse(localStorage.getItem('technicians')) || [];
-            technicians.push(technicianData);
-            localStorage.setItem('technicians', JSON.stringify(technicians));
-
-            document.getElementById('accountMessage').textContent = 'Account created successfully. You can now login.';
-            document.getElementById('createAccountForm').reset();
-        });
-
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
