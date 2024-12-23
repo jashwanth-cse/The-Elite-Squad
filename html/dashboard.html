@@ -95,10 +95,7 @@
             ElectronicTechnician: ['AC', 'Fridge', 'WaterHeater']
         };
 
-        const relevantComplaints = complaints.filter(complaint => {
-            const jobTypes = jobComplaintTypes[loggedInTechnician.job];
-            return jobTypes && jobTypes.includes(complaint.complaintType);
-        });
+        const relevantComplaints = complaints.filter(complaint => jobComplaintTypes[loggedInTechnician.job].includes(complaint.complaintType));
 
         const complaintsContainer = document.getElementById('complaintsContainer');
         relevantComplaints.forEach(complaint => {
@@ -112,7 +109,6 @@
                 <p><strong>Description:</strong> ${complaint.description}</p>
                 <p><strong>Date:</strong> ${complaint.date}</p>
                 <p><strong>Address:</strong> ${complaint.address} <button onclick="navigateToLocation('${complaint.address}')">Navigate</button></p>
-                <div><strong>Images:</strong> ${complaint.images.map(image => `<img src="${image}" alt="Issue Image" style="max-width: 100px; margin: 5px;">`).join('')}</div>
                 <button onclick="takeComplaint('${complaint.id}')">Take Complaint</button>
             `;
             complaintsContainer.appendChild(complaintDiv);
