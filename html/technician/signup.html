@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,27 +88,27 @@
         form {
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
         label {
             margin-bottom: 8px;
             font-size: 1.1rem;
             color: #007BFF;
-            width: 100%;
         }
 
-        input, select, button {
+        input,
+        select,
+        button {
             margin-bottom: 15px;
             padding: 10px;
             font-size: 1rem;
             border-radius: 4px;
             border: 1px solid #ccc;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            width: 100%;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             border-color: #007BFF;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
@@ -134,6 +135,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -143,6 +145,7 @@
             from {
                 transform: translateX(-100%);
             }
+
             to {
                 transform: translateX(0);
             }
@@ -152,12 +155,14 @@
             from {
                 transform: translateY(100%);
             }
+
             to {
                 transform: translateY(0);
             }
         }
     </style>
 </head>
+
 <body>
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
@@ -184,13 +189,15 @@
                 <input type="date" id="dob" name="dob" required>
 
                 <label for="qualification">Qualification:</label>
-                <input type="text" id="qualification" name="qualification" required placeholder="Enter your qualification">
+                <input type="text" id="qualification" name="qualification" required
+                    placeholder="Enter your qualification">
 
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required placeholder="Enter your email address">
 
                 <label for="mobile">Mobile Number:</label>
-                <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
+                <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number"
+                    pattern="[0-9]{10}">
 
                 <label for="job">Job:</label>
                 <select id="job" name="job" required>
@@ -217,7 +224,7 @@
             document.getElementById('sidebar').classList.toggle('show');
         }
 
-        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+        document.getElementById('createAccountForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const newUsername = document.getElementById('newUsername').value;
@@ -261,4 +268,5 @@
         });
     </script>
 </body>
+
 </html>
