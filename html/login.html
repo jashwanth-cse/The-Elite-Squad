@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,7 +96,8 @@
             color: #007BFF;
         }
 
-        input, button {
+        input,
+        button {
             margin-bottom: 15px;
             padding: 10px;
             font-size: 1rem;
@@ -151,6 +153,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -160,6 +163,7 @@
             from {
                 transform: translateX(-100%);
             }
+
             to {
                 transform: translateX(0);
             }
@@ -169,12 +173,14 @@
             from {
                 transform: translateY(100%);
             }
+
             to {
                 transform: translateY(0);
             }
         }
     </style>
 </head>
+
 <body>
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
@@ -213,7 +219,7 @@
             document.getElementById('sidebar').classList.toggle('show');
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const username = document.getElementById('username').value;
@@ -231,4 +237,5 @@
         });
     </script>
 </body>
+
 </html>
