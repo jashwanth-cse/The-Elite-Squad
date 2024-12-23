@@ -51,7 +51,18 @@
             padding: 2rem;
             flex: 1;
         }
-
+        .menu-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
         .container {
             max-width: 600px;
             margin: 50px auto;
@@ -177,6 +188,7 @@
 </head>
 
 <body>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
         <h2>Navigation</h2>
         <nav>
