@@ -181,6 +181,10 @@
     </div>
 
     <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+
         document.getElementById('checkStatusForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -212,10 +216,6 @@
         function navigateToLocation(address) {
             const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
             window.open(url, '_blank');
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('show');
         }
     </script>
 </body>
