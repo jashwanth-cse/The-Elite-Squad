@@ -95,7 +95,10 @@
             ElectronicTechnician: ['AC', 'Fridge', 'WaterHeater']
         };
 
-        const relevantComplaints = complaints.filter(complaint => jobComplaintTypes[loggedInTechnician.job].includes(complaint.complaintType));
+        const relevantComplaints = complaints.filter(complaint => {
+            const jobTypes = jobComplaintTypes[loggedInTechnician.job];
+            return jobTypes && jobTypes.includes(complaint.complaintType);
+        });
 
         const complaintsContainer = document.getElementById('complaintsContainer');
         relevantComplaints.forEach(complaint => {
