@@ -10,7 +10,44 @@
             background: linear-gradient(to right, #e0f7fa, #80deea);
             margin: 0;
             padding: 0;
+            display: flex;
             animation: fadeIn 1s ease-in-out;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #0056b3;
+            color: #fff;
+            padding: 1rem;
+            position: fixed;
+            height: 100%;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .sidebar nav a:hover {
+            background: #003d7a;
+            transform: scale(1.05);
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 2rem;
+            flex: 1;
         }
 
         .container {
@@ -95,6 +132,15 @@
             }
         }
 
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
         @keyframes slideInUp {
             from {
                 transform: translateY(100%);
@@ -106,96 +152,101 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="../index.html">Home</a>
-        <a href="register.html">Register Complaint</a>
-        <a href="status.html">Check Status</a>
-        <a href="login.html">Technician Login</a>
-        <a href="#contact">Contact Us</a>
-    </nav>
-    <div class="container">
-        <h1>Register Your Complaint</h1>
-        <form id="complaintForm">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="register.html">Register Complaint</a>
+            <a href="status.html">Check Status</a>
+            <a href="login.html">Technician Login</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>Register Your Complaint</h1>
+            <form id="complaintForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
 
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
 
-            <label for="mobile">Mobile Number:</label>
-            <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
 
-            <label for="complaintType">Complaint Type:</label>
-            <select id="complaintType" name="complaintType" required>
-                <option value="" disabled selected>Select One</option>
-                <option value="TV">TV No Signal</option>
-                <option value="AC">AC Not Working</option>
-                <option value="Water">Water Complaint</option>
-                <option value="Fuse">Fuse Broken</option>
-                <option value="WaterPump">Water Pump Motor Repair</option>
-                <option value="UPS">UPS Overload</option>
-                <option value="Fridge">Refrigerator Not Working</option>
-                <option value="WaterHeater">Geyser Not Working</option>
-            </select>
-
-            <label for="description">Description of the Issue:</label>
-            <textarea id="description" name="description" rows="4" placeholder="Describe your issue here (optional)"></textarea>
-
-            <div id="setTopBoxContainer">
-                <label for="setTopBox">Set Top Box:</label>
-                <select id="setTopBox" name="setTopBox">
-                    <option value="Airtel">Airtel</option>
-                    <option value="TataPlay">TataPlay</option>
-                    <option value="SunDirect">Sun Direct</option>
-                    <option value="DishTV">Dish TV</option>
-                    <option value="VideoconD2H">Videocon D2H</option>
-                    <option value="Jio">Jio</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-            <div id="acBrandContainer">
-                <label for="acBrand">AC Brand:</label>
-                <select id="acBrand" name="acBrand">
-                    <option value="LG">LG</option>
-                    <option value="Samsung">Samsung</option>
-                    <option value="Voltas">Voltas</option>
-                    <option value="BlueStar">Blue Star</option>
-                    <option value="Daikin">Daikin</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-            <div id="fridgeBrandContainer">
-                <label for="fridgeBrand">Fridge Brand:</label>
-                <select id="fridgeBrand" name="fridgeBrand">
-                    <option value="LG">LG</option>
-                    <option value="Samsung">Samsung</option>
-                    <option value="Whirlpool">Whirlpool</option>
-                    <option value="Godrej">Godrej</option>
-                    <option value="Haier">Haier</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-            <div id="warrantyStatusContainer">
-                <label for="warrantyStatus">Warranty Status:</label>
-                <select id="warrantyStatus" name="warrantyStatus">
+                <label for="complaintType">Complaint Type:</label>
+                <select id="complaintType" name="complaintType" required>
                     <option value="" disabled selected>Select One</option>
-                    <option value="InWarranty">In Warranty</option>
-                    <option value="OutOfWarranty">Out of Warranty</option>
+                    <option value="TV">TV No Signal</option>
+                    <option value="AC">AC Not Working</option>
+                    <option value="Water">Water Complaint</option>
+                    <option value="Fuse">Fuse Broken</option>
+                    <option value="WaterPump">Water Pump Motor Repair</option>
+                    <option value="UPS">UPS Overload</option>
+                    <option value="Fridge">Refrigerator Not Working</option>
+                    <option value="WaterHeater">Geyser Not Working</option>
                 </select>
-            </div>
 
-            <div id="addressContainer">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required placeholder="Enter your address">
-                <button type="button" id="useCurrentLocation">Use My Current Location</button>
-            </div>
+                <label for="description">Description of the Issue:</label>
+                <textarea id="description" name="description" rows="4" placeholder="Describe your issue here (optional)"></textarea>
 
-            <button type="submit">Submit Complaint</button>
-        </form>
-        <div id="successMessage"></div>
+                <div id="setTopBoxContainer">
+                    <label for="setTopBox">Set Top Box:</label>
+                    <select id="setTopBox" name="setTopBox">
+                        <option value="Airtel">Airtel</option>
+                        <option value="TataPlay">TataPlay</option>
+                        <option value="SunDirect">Sun Direct</option>
+                        <option value="DishTV">Dish TV</option>
+                        <option value="VideoconD2H">Videocon D2H</option>
+                        <option value="Jio">Jio</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div id="acBrandContainer">
+                    <label for="acBrand">AC Brand:</label>
+                    <select id="acBrand" name="acBrand">
+                        <option value="LG">LG</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Voltas">Voltas</option>
+                        <option value="BlueStar">Blue Star</option>
+                        <option value="Daikin">Daikin</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div id="fridgeBrandContainer">
+                    <label for="fridgeBrand">Fridge Brand:</label>
+                    <select id="fridgeBrand" name="fridgeBrand">
+                        <option value="LG">LG</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Whirlpool">Whirlpool</option>
+                        <option value="Godrej">Godrej</option>
+                        <option value="Haier">Haier</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div id="warrantyStatusContainer">
+                    <label for="warrantyStatus">Warranty Status:</label>
+                    <select id="warrantyStatus" name="warrantyStatus">
+                        <option value="" disabled selected>Select One</option>
+                        <option value="InWarranty">In Warranty</option>
+                        <option value="OutOfWarranty">Out of Warranty</option>
+                    </select>
+                </div>
+
+                <div id="addressContainer">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required placeholder="Enter your address">
+                    <button type="button" id="useCurrentLocation">Use My Current Location</button>
+                </div>
+
+                <button type="submit">Submit Complaint</button>
+            </form>
+            <div id="successMessage"></div>
+        </div>
     </div>
 
     <script>
