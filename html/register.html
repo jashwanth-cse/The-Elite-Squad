@@ -301,6 +301,10 @@
             document.getElementById('sidebar').classList.toggle('show');
         }
 
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('show');
+        });
+
         document.getElementById('complaintType').addEventListener('change', function () {
             const complaintType = this.value;
             document.getElementById('setTopBoxContainer').style.display = 'none';
