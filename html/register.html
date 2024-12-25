@@ -286,6 +286,9 @@
                     </button>
                 </div>
 
+                <label for="imageUpload">Upload Image of the Problem (optional):</label>
+                <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+
                 <button type="submit">Submit Complaint</button>
             </form>
             <div id="successMessage"></div>
@@ -375,6 +378,7 @@
             const fridgeBrand = document.getElementById('fridgeBrand').value;
             const warrantyStatus = document.getElementById('warrantyStatus').value;
             const address = document.getElementById('address').value;
+            const imageUpload = document.getElementById('imageUpload').files[0];
 
             const complaintData = {
                 name,
@@ -390,21 +394,34 @@
                 date: new Date().toLocaleString(),
             };
 
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                complaintData.image = e.target.result;
+                saveComplaint(complaintData);
+            };
+            if (imageUpload) {
+                reader.readAsDataURL(imageUpload);
+            } else {
+                saveComplaint(complaintData);
+            }
+        });
+
+        function saveComplaint(complaintData) {
             const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
             const complaintId = 'complaint-' + new Date().getTime();
-            complaintData.id = complaintId; // Add the complaint ID to the complaint data
+            complaintData.id = complaintId;
             complaints.push(complaintData);
             localStorage.setItem('complaints', JSON.stringify(complaints));
 
-            let successMessage = `Thank you, ${name}. Your complaint has been registered with Complaint ID: ${complaintId}.`;
-            if (warrantyStatus === 'InWarranty') {
+            let successMessage = `Thank you, ${complaintData.name}. Your complaint has been registered with Complaint ID: ${complaintData.id}.`;
+            if (complaintData.warrantyStatus === 'InWarranty') {
                 successMessage += ' Free service will be provided as the product is under warranty.';
-            } else if (warrantyStatus === 'OutOfWarranty') {
+            } else if (complaintData.warrantyStatus === 'OutOfWarranty') {
                 successMessage += ' Service charge is applicable as the product is out of warranty.';
             }
             document.getElementById('successMessage').textContent = successMessage;
             document.getElementById('complaintForm').reset();
-        });
+        }
 
         // Initialize Google Maps Places Autocomplete
         window.onload = initAutocomplete;
