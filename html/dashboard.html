@@ -195,7 +195,7 @@
         };
 
         const relevantComplaints = complaints.filter(complaint => 
-            jobComplaintTypes[loggedInTechnician.job].includes(complaint.complaintType) && !complaint.takenBy
+            jobComplaintTypes[loggedInTechnician.job].includes(complaint.complaintType)
         );
 
         const complaintsContainer = document.getElementById('complaintsContainer');
@@ -220,13 +220,7 @@
             alert(`Complaint ${complaintId} taken by ${loggedInTechnician.username}`);
             button.textContent = 'Completion Pending';
             button.disabled = true;
-
-            const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
-            const complaint = complaints.find(complaint => complaint.id === complaintId);
-            if (complaint) {
-                complaint.takenBy = loggedInTechnician.username;
-                localStorage.setItem('complaints', JSON.stringify(complaints));
-            }
+            // Additional logic to mark the complaint as taken can be added here
         }
 
         function navigateToLocation(address) {
