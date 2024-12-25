@@ -202,6 +202,7 @@
                 <p><strong>Description:</strong> ${complaint.description}</p>
                 <p><strong>Date:</strong> ${complaint.date}</p>
                 <p><strong>Address:</strong> ${complaint.address} <button onclick="navigateToLocation('${complaint.address}')">Navigate</button></p>
+                ${complaint.image ? `<p><strong>Image:</strong><br><img src="${complaint.image}" alt="Complaint Image" style="max-width: 100%; height: auto;"></p>` : ''}
                 <button onclick="takeComplaint('${complaint.id}')">Take Complaint</button>
             `;
             complaintsContainer.appendChild(complaintDiv);
