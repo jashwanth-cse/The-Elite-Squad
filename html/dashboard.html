@@ -209,13 +209,15 @@
                 <p><strong>Date:</strong> ${complaint.date}</p>
                 <p><strong>Address:</strong> ${complaint.address} <button onclick="navigateToLocation('${complaint.address}')">Navigate</button></p>
                 ${complaint.image ? `<p><strong>Image:</strong><br><img src="${complaint.image}" alt="Complaint Image" style="max-width: 100%; height: auto;"></p>` : ''}
-                <button onclick="takeComplaint('${complaint.id}')">Take Complaint</button>
+                <button onclick="takeComplaint('${complaint.id}', this)">Take Complaint</button>
             `;
             complaintsContainer.appendChild(complaintDiv);
         });
 
-        function takeComplaint(complaintId) {
+        function takeComplaint(complaintId, button) {
             alert(`Complaint ${complaintId} taken by ${loggedInTechnician.username}`);
+            button.textContent = 'Completion Pending';
+            button.disabled = true;
             // Additional logic to mark the complaint as taken can be added here
         }
 
