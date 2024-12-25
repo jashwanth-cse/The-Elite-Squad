@@ -220,7 +220,14 @@
             alert(`Complaint ${complaintId} taken by ${loggedInTechnician.username}`);
             button.textContent = 'Completion Pending';
             button.disabled = true;
-            // Additional logic to mark the complaint as taken can be added here
+
+            const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
+            const complaint = complaints.find(complaint => complaint.id === complaintId);
+            if (complaint) {
+                complaint.takenBy = loggedInTechnician.username;
+                complaint.technicianPhone = loggedInTechnician.mobile;
+                localStorage.setItem('complaints', JSON.stringify(complaints));
+            }
         }
 
         function navigateToLocation(address) {

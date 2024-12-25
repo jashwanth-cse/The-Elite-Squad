@@ -224,6 +224,7 @@
                     <p><strong>Description:</strong> ${complaintData.description}</p>
                     <p><strong>Date:</strong> ${complaintData.date}</p>
                     <p><strong>Address:</strong> ${complaintData.address}</p>
+                    ${complaintData.takenBy ? `<p><strong>Technician:</strong> ${complaintData.takenBy}</p><p><strong>Technician Phone:</strong> ${complaintData.technicianPhone}</p>` : ''}
                 `;
             } else {
                 document.getElementById('complaintDetails').textContent = "Complaint not found. Please check the ID and try again.";
