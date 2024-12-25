@@ -22,7 +22,7 @@
             padding: 1rem;
             position: fixed;
             height: 100%;
-            transform: translateX(0);
+            transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
         .sidebar.show {
@@ -302,9 +302,11 @@
             document.getElementById('sidebar').classList.toggle('show');
         }
 
-        document.querySelector('.close-btn').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('show');
+        document.querySelectorAll('.menu-btn').forEach(button => {
+            button.addEventListener('click', toggleSidebar);
         });
+
+        document.querySelector('.close-btn').addEventListener('click', toggleSidebar);
 
         document.getElementById('complaintType').addEventListener('change', function () {
             const complaintType = this.value;
