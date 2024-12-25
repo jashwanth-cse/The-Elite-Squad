@@ -191,6 +191,10 @@
             document.getElementById('sidebar').classList.toggle('show');
         }
 
+        document.querySelectorAll('.menu-btn').forEach(button => {
+            button.addEventListener('click', toggleSidebar);
+        });
+
         document.getElementById('checkStatusForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
