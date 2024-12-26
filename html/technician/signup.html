@@ -131,6 +131,24 @@
             animation: fadeIn 2s ease-in-out;
         }
 
+        .password-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-container input {
+            width: calc(100% - 40px);
+            padding-right: 40px;
+        }
+
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -183,7 +201,10 @@
                 <input type="text" id="newUsername" name="newUsername" required placeholder="Create a username">
 
                 <label for="newPassword">Password:</label>
-                <input type="password" id="newPassword" name="newPassword" required placeholder="Create a password">
+                <div class="password-container">
+                    <input type="password" id="newPassword" name="newPassword" required placeholder="Create a password">
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                </div>
 
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" name="dob" required>
@@ -222,6 +243,18 @@
     <script>
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('show');
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('newPassword');
+            const togglePassword = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = '👁️';
+            }
         }
 
         document.getElementById('createAccountForm').addEventListener('submit', function (event) {
