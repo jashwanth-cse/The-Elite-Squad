@@ -21,12 +21,12 @@
             padding: 1rem;
             position: fixed;
             height: 100%;
-            transform: translateX(-100%);
+            transform: translateX(0); /* Always show the sidebar */
             transition: transform 0.3s ease;
         }
 
         .sidebar.show {
-            transform: translateX(0);
+            transform: translateX(0); /* Always show the sidebar */
         }
 
         .sidebar h2 {
@@ -155,9 +155,7 @@
     </style>
 </head>
 <body>
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✖</button>
         <h2>Navigation</h2>
         <nav>
             <a href="../index.html">Home</a>
@@ -168,7 +166,6 @@
         </nav>
     </div>
     <div class="content">
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
         <div class="container">
             <h1>Pending Complaints</h1>
             <div id="complaintsContainer"></div>
@@ -176,14 +173,6 @@
     </div>
 
     <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('show');
-        }
-
-        document.querySelector('.close-btn').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('show');
-        });
-
         const loggedInTechnician = JSON.parse(localStorage.getItem('loggedInTechnician'));
         const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
 
