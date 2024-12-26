@@ -15,6 +15,17 @@
             animation: fadeIn 1s ease-in-out;
         }
 
+        .sidebar {
+            width: 250px;
+            background: #0056b3;
+            color: #fff;
+            padding: 1rem;
+            position: fixed;
+            height: 100%;
+            transform: translateX(0);
+            /* Always show the sidebar */
+            transition: transform 0.3s ease;
+        }
 
         .sidebar.show {
             transform: translateX(0);
