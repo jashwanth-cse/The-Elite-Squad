@@ -22,12 +22,12 @@
             padding: 1rem;
             position: fixed;
             height: 100%;
-            transform: translateX(-100%);
+            transform: translateX(0); /* Always show the sidebar */
             transition: transform 0.3s ease;
         }
 
         .sidebar.show {
-            transform: translateX(0);
+            transform: translateX(0); /* Always show the sidebar */
         }
 
         .sidebar h2 {
@@ -202,7 +202,6 @@
 </head>
 
 <body>
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
         <h2>Navigation</h2>
         <nav>
@@ -238,10 +237,6 @@
     </div>
 
     <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('show');
-        }
-
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
             const togglePassword = document.querySelector('.toggle-password');
