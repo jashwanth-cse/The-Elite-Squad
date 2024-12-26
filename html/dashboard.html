@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technician Dashboard</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #e0f7fa, #80deea);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            animation: fadeIn 1s ease-in-out;
-        }
-
         .sidebar {
             width: 250px;
             background: #0056b3;
@@ -21,12 +13,14 @@
             padding: 1rem;
             position: fixed;
             height: 100%;
-            transform: translateX(0); /* Always show the sidebar */
+            transform: translateX(0);
+            /* Always show the sidebar */
             transition: transform 0.3s ease;
         }
 
         .sidebar.show {
-            transform: translateX(0); /* Always show the sidebar */
+            transform: translateX(0);
+            /* Always show the sidebar */
         }
 
         .sidebar h2 {
@@ -55,7 +49,8 @@
             flex: 1;
         }
 
-        .menu-btn, .close-btn {
+        .menu-btn,
+        .close-btn {
             position: absolute;
             top: 1rem;
             left: 1rem;
@@ -130,6 +125,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -139,6 +135,7 @@
             from {
                 transform: translateX(-100%);
             }
+
             to {
                 transform: translateX(0);
             }
@@ -148,12 +145,14 @@
             from {
                 transform: translateY(100%);
             }
+
             to {
                 transform: translateY(0);
             }
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar" id="sidebar">
         <h2>Navigation</h2>
@@ -183,7 +182,7 @@
             ElectronicTechnician: ['AC', 'Fridge', 'WaterHeater']
         };
 
-        const relevantComplaints = complaints.filter(complaint => 
+        const relevantComplaints = complaints.filter(complaint =>
             jobComplaintTypes[loggedInTechnician.job].includes(complaint.complaintType)
         );
 
@@ -225,4 +224,5 @@
         }
     </script>
 </body>
+
 </html>
