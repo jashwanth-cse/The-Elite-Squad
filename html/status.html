@@ -22,12 +22,14 @@
             padding: 1rem;
             position: fixed;
             height: 100%;
-            transform: translateX(-100%);
+            transform: translateX(0);
+            /* Always show the sidebar */
             transition: transform 0.3s ease;
         }
 
         .sidebar.show {
             transform: translateX(0);
+            /* Always show the sidebar */
         }
 
         .sidebar h2 {
@@ -54,19 +56,6 @@
             margin-left: 250px;
             padding: 2rem;
             flex: 1;
-        }
-
-        .menu-btn, .close-btn{
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: #0056b3;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1.2rem;
         }
 
         .container {
@@ -168,9 +157,7 @@
 </head>
 
 <body>
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✖</button>
         <h2>Navigation</h2>
         <nav>
             <a href="../index.html">Home</a>
@@ -195,14 +182,6 @@
     </div>
 
     <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('show');
-        }
-
-        document.querySelectorAll('.menu-btn').forEach(button => {
-            button.addEventListener('click', toggleSidebar);
-        });
-
         document.getElementById('checkStatusForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
