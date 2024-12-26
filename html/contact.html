@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - We Solve It</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #0056b3;
+            color: #fff;
+            padding: 1rem;
+            position: fixed;
+            height: 100%;
+            transform: translateX(0); /* Always show the sidebar */
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .sidebar nav a:hover {
+            background: #003d7a;
+            transform: scale(1.05);
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            animation: slideInUp 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="register.html">Register Complaint</a>
+            <a href="status.html">Check Status</a>
+            <a href="login.html">Technician Login</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p><strong>Company Name:</strong> We Solve It</p>
+            <p><strong>Email:</strong> support@wesolveit.com</p>
+            <p><strong>Phone:</strong> +1 (800) 123-4567</p>
+        </div>
+    </div>
+</body>
+</html>
