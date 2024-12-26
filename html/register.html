@@ -22,11 +22,11 @@
             padding: 1rem;
             position: fixed;
             height: 100%;
-            transform: translateX(-100%);
+            transform: translateX(0); /* Always show the sidebar */
             transition: transform 0.3s ease;
         }
         .sidebar.show {
-            transform: translateX(0);
+            transform: translateX(0); /* Always show the sidebar */
         }
         .sidebar h2 {
             text-align: center;
@@ -148,7 +148,7 @@
         #useCurrentLocation {
             background: none;
             border: none;
-            cursor: pointer;
+            cursor: button;
             margin-left: 10px;
         }
 
@@ -190,9 +190,7 @@
 </head>
 
 <body>
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✖</button>
         <h2>Navigation</h2>
         <nav>
             <a href="../index.html">Home</a>
@@ -203,7 +201,6 @@
         </nav>
     </div>
     <div class="content">
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
         <div class="container">
             <h1>Register Your Complaint</h1>
             <form id="complaintForm">
@@ -298,16 +295,6 @@
     </div>
 
     <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('show');
-        }
-
-        document.querySelectorAll('.menu-btn').forEach(button => {
-            button.addEventListener('click', toggleSidebar);
-        });
-
-        document.querySelector('.close-btn').addEventListener('click', toggleSidebar);
-
         document.getElementById('complaintType').addEventListener('change', function () {
             const complaintType = this.value;
             document.getElementById('setTopBoxContainer').style.display = 'none';
