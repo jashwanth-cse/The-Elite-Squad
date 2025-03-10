@@ -287,12 +287,19 @@
                 job
             };
 
-            const technicians = JSON.parse(localStorage.getItem('technicians')) || [];
-            technicians.push(technicianData);
-            localStorage.setItem('technicians', JSON.stringify(technicians));
+           const technicians = JSON.parse(localStorage.getItem('technicians')) || [];
+technicians.push(technicianData);
+localStorage.setItem('technicians', JSON.stringify(technicians));
 
-            document.getElementById('accountMessage').textContent = 'Account created successfully. You can now login.';
-            document.getElementById('createAccountForm').reset();
+// Show success message and redirect after 2 seconds
+document.getElementById('accountMessage').textContent = 'Account created successfully! Redirecting...';
+
+setTimeout(() => {
+    window.location.href = '../login.html'; // Redirect to login page
+}, 2000); // Redirect after 2 seconds
+
+document.getElementById('createAccountForm').reset();
+
         });
     </script>
 </body>
